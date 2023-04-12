@@ -29,9 +29,17 @@
         </div>
     </div>
     <div class="form-group row align-items-center">
-        <label class="col-3">Mô tả</label>
+        <label class="col-3">Mô tả ngắn</label>
         <div class="col">
-            <textarea name="content" class="form-control" id="" cols="30" rows="3" placeholder="Nội dung">{{ $product->content ?? "" }}</textarea>
+            <textarea name="description" class="form-control" id="" cols="30" rows="3" placeholder="Chú ý nhập mô tả từ 80 -> 130 ký tự, không nhập quá dài và quá ngắn">{{ $product->description ?? "" }}</textarea>
+            <span style="color: red;font-size: 12px"><i>Chú ý nhập mô tả từ 80 -> 130 ký tự, không nhập quá dài và quá ngắn</i></span>
+        </div>
+    </div>
+    <div class="form-group row align-items-center">
+        <label class="col-3">Nội dung</label>
+        <div class="col">
+            <textarea name="content" class="form-control" id="content" cols="30" rows="3" placeholder="Nội dung">{{ $product->content ?? "" }}</textarea>
+            <span style="color: red;font-size: 12px"><i>Nội dung nhập đầy đủ thông tin sản phẩm, có thể nhập nhiều</i></span>
         </div>
     </div>
     <div class="form-group row align-items-center">
@@ -52,3 +60,16 @@
         <button type="submit" class="btn btn-primary">Lưu thông tin</button>
     </div>
 </form>
+
+<script type="text/javascript" src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script type="text/javascript">
+
+    var options = {
+        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+    };
+
+    CKEDITOR.replace( 'content' ,options);
+</script>

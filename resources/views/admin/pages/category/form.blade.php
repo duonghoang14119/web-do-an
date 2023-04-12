@@ -24,6 +24,14 @@
             <input type="file" name="avatar" class="form-control">
         </div>
     </div>
+    @if (isset($category) && $category->avatar)
+        <div class="form-group row align-items-center">
+            <label class="col-3"></label>
+            <div class="col">
+                <img style="width: 100px;height: auto" src="{{ pare_url_file($category->avatar) }}" alt="">
+            </div>
+        </div>
+    @endif
     <div class="d-flex justify-content-end">
         <button type="submit" class="btn btn-primary">Lưu thông tin</button>
     </div>

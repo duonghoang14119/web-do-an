@@ -62,7 +62,7 @@ class AdminProductController extends Controller
             if ($image['code'] == 1)
                 $data['avatar'] = $image['name'];
         }
-        $category = Product::find($id)->update($data);
+        Product::find($id)->update($data);
         return redirect()->route('get_admin.product.index');
     }
 }

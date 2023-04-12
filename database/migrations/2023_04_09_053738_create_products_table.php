@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('description')->nullable();
             $table->integer('price')->default(0);
             $table->text('content')->nullable();
+            $table->string('avatar')->nullable();
             $table->integer('total_vote')->default(0);
             $table->integer('stat_vote')->default(0);
             $table->integer('age_vote')->default(0);

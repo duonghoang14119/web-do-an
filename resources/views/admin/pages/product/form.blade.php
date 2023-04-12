@@ -31,7 +31,7 @@
     <div class="form-group row align-items-center">
         <label class="col-3">Mô tả</label>
         <div class="col">
-            <textarea name="content" class="form-control" id="" cols="30" rows="3" placeholder="Nội dung">{{ $product->contentn ?? "" }}</textarea>
+            <textarea name="content" class="form-control" id="" cols="30" rows="3" placeholder="Nội dung">{{ $product->content ?? "" }}</textarea>
         </div>
     </div>
     <div class="form-group row align-items-center">
@@ -41,12 +41,12 @@
         </div>
     </div>
     @if (isset($product) && $product->avatar)
-    <div class="form-group row align-items-center">
-        <label class="col-3"></label>
-        <div class="col">
-            <img src="{{ pare_url_file($product->avatar) }}" alt="">
+        <div class="form-group row align-items-center">
+            <label class="col-3"></label>
+            <div class="col">
+                <img style="width: 100px;height: auto" src="{{ pare_url_file($product->avatar) }}" alt="">
+            </div>
         </div>
-    </div>
     @endif
     <div class="d-flex justify-content-end">
         <button type="submit" class="btn btn-primary">Lưu thông tin</button>

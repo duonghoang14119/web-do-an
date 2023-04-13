@@ -81,7 +81,10 @@ class ApiAuthController extends Controller
     {
         try {
             $user = Auth::user();
-            return response()->json(['success' => $user]);
+            return response()->json(ResponseService::getSuccess([
+                'user' => $user
+            ]));
+
         } catch (\Exception $exception) {
             Log::error("ApiAuthController@info => File:  " .
                 $exception->getFile() . " Line: " .

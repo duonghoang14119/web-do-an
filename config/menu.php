@@ -15,4 +15,8 @@ return [
         'route' => 'get_admin.product.index',
         'name' => 'Sản phẩm'
     ],
+    [
+        'route' => 'get_admin.user.index',
+        'name' => 'Thành viên'
+    ],
 ];

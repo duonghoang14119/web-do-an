@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
@@ -17,32 +19,27 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $categories = [
+        $users = [
             [
-                'name' => 'đồ ăn',
-                'hot'  => 0
+                'name'     => 'Phú Phan',
+                'email'    => 'phuphan@gmail.com',
+                'password' => bcrypt('123456789')
             ],
             [
-                'name' => 'đồ uống',
-                'hot'  => 0
-            ],
-            [
-                'name' => 'đồ ăn sáng',
-                'hot'  => 0
-            ],
-            [
-                'name' => 'đồ ăn tối',
-                'hot'  => 1
-            ],
+                'name'     => 'Hạ Linh',
+                'email'    => 'halinh@gmail.com',
+                'password' => bcrypt('123456789')
+            ]
         ];
 
-        foreach ($categories as $item) {
-            Category::create([
-                'name'       => $item['name'],
-                'slug'       => Str::slug($item['name']),
-                'created_at' => Carbon::now(),
-                'hot'        => $item['hot']
-            ]);
+        foreach ($users as $item) {
+            try{
+                print_r($item);
+                $item['created_at'] = Carbon::now();
+                User::create($item);
+            }catch (\Exception $exception) {
+                Log::error(json_encode($exception->getMessage()));
+            }
         }
     }
 }

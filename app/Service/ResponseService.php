@@ -24,7 +24,7 @@ class ResponseService
      */
     public static function getSuccess($data = []) {
         return [
-            'status' => \Isvn\Common\Entities\ResponseService::SUCCESS,
+            'status' => ResponseService::SUCCESS,
             'data' => $data
         ];
     }

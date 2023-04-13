@@ -19,6 +19,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function () {
+    Route::post('auth/login','ApiAuthController@login');
+    Route::post('auth/register','ApiAuthController@register');
+    Route::post('auth/info','ApiAuthController@info')->middleware('auth:api');
+});
+
+Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function () {
     Route::group(['prefix' => 'category'], function (){
         Route::get('','ApiCategoryController@index');
         Route::get('show/{id}','ApiCategoryController@show');

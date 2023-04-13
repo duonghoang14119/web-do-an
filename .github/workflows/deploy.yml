@@ -36,4 +36,4 @@ jobs:
                       cd /var/www/khodoan/seri-api-food
                       git pull origin master
                       composer install
-                      sudo chmod -R 777 storage/
+#                      sudo chmod -R 777 storage/

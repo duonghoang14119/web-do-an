@@ -29,17 +29,12 @@ class CategoryCollection extends ResourceCollection
         ];
     }
 
-    public function transform($value, callable $callback, $default = null)
-    {
-        Log::info("transform");
-    }
-
     public function mapCollection()
     {
         $categories = $this->collection;
         $data = [];
         foreach ($categories as $item) {
-            $item['category'] = pare_url_file($item['avatar']);
+            $item['avatar'] = pare_url_file($item['avatar']);
             $data[] = $item;
         }
         return $data;

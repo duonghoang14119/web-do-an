@@ -18,7 +18,7 @@ class ProductCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'products'       => $this->collection,
+            'products'       => $this->mapCollection(),
             'meta' => [
                 'total'        => $this->total(),
                 'count'        => $this->count(),
@@ -27,5 +27,17 @@ class ProductCollection extends ResourceCollection
                 'total_pages'  => $this->lastPage()
             ],
         ];
+    }
+
+
+    public function mapCollection()
+    {
+        $products = $this->collection;
+        $data = [];
+        foreach ($products as $item) {
+            $item['avatar'] = pare_url_file($item['avatar']);
+            $data[] = $item;
+        }
+        return $data;
     }
 }

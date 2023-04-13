@@ -2,7 +2,10 @@
 
 
 ## Câu lệnh
-` php artisan make:resource CategoryResource => Tạo Resource`
+`
+    php artisan make:resource CategoryResource => Tạo Resource
+    php artisan make:resource CategoryCollection => Tạo Collection
+`
 
 ## Mã lỗi
 `

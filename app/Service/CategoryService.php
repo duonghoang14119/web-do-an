@@ -8,6 +8,7 @@
 
 namespace App\Service;
 
+use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -16,6 +17,13 @@ class CategoryService
 {
     public static function index(Request $request)
     {
-        return  CategoryResource::collection(Category::all());
+        $categories = Category::paginate(6);
+        return  new CategoryCollection($categories);
+    }
+
+    public static function show(Request $request, $id)
+    {
+        $category = Category::find($id);
+        return new CategoryResource($category);
     }
 }

@@ -29,4 +29,25 @@ class ApiCategoryController extends Controller
             ], 501);
         }
     }
+
+    public function show(Request $request, $id)
+    {
+        try{
+
+            $category = CategoryService::show($request, $id);
+
+            return response()->json([
+                'data' => $category
+            ], 200);
+
+        }catch (\Exception $exception) {
+            Log::error("ApiCategoryController@show => File:  ".
+                $exception->getFile(). " Line: ".
+                $exception->getLine() ." Message: ".
+                $exception->getMessage());
+            return response()->json([
+                'data' => []
+            ], 501);
+        }
+    }
 }

@@ -30,4 +30,25 @@ class ApiProductController extends Controller
             ], 501);
         }
     }
+
+    public function show(Request $request, $id)
+    {
+        try{
+
+            $product = ProductService::show($request, $id);
+
+            return response()->json([
+                'data' => $product
+            ], 200);
+
+        }catch (\Exception $exception) {
+            Log::error("ApiProductController@show => File:  ".
+                $exception->getFile(). " Line: ".
+                $exception->getLine() ." Message: ".
+                $exception->getMessage());
+            return response()->json([
+                'data' => []
+            ], 501);
+        }
+    }
 }

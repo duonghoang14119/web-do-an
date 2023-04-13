@@ -8,14 +8,27 @@
 
 namespace App\Service;
 
-use App\Http\Resources\CategoryResource;
-use App\Models\Category;
+use App\Http\Resources\ProductCollection;
+use App\Http\Resources\ProductResource;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductService
 {
     public static function index(Request $request)
     {
-        return  CategoryResource::collection(Category::all());
+        $products = Product::with('category:id,name,slug');
+
+        if ($request->category_id)
+            $products->where('category_id', $request->category_id);
+
+        $products = $products->paginate(20);
+        return new ProductCollection($products);
+    }
+
+    public static function show(Request $request, $id)
+    {
+        $product = Product::find($id);
+        return  new ProductResource($product);
     }
 }

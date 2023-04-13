@@ -21,5 +21,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function () {
     Route::group(['prefix' => 'category'], function (){
         Route::get('','ApiCategoryController@index');
+        Route::get('show/{id}','ApiCategoryController@show');
+    });
+    Route::group(['prefix' => 'product'], function (){
+        Route::get('','ApiProductController@index');
+        Route::get('show/{id}','ApiProductController@show');
     });
 });

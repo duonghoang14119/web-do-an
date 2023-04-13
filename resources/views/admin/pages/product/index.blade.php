@@ -37,6 +37,16 @@
                                         </tr>
                                     @endforeach
                                 </table>
+                                <div class="d-sm-flex justify-content-sm-between align-items-sm-center mt-2 mt-sm-2">
+                                    <!-- Content -->
+                                    <p class="mb-sm-0 text-center text-sm-start">
+                                        Hiển thị: {{ $products->firstItem() }} to {{ $products->lastItem() }} /
+                                        Tổng {{ $products->total() }} record &nbsp;
+                                    </p>
+                                    <nav class="my-5" aria-label="navigation">
+                                        {!! $products->appends($query ?? [])->links('pagination.customer') !!}
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>

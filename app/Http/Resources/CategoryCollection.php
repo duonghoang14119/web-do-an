@@ -31,7 +31,7 @@ class CategoryCollection extends ResourceCollection
 
     public function transform($value, callable $callback, $default = null)
     {
-        Log::info("tranfo");
+        Log::info("transform");
     }
 
     public function mapCollection()

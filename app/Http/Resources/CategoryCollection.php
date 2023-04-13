@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Models\Category;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\Log;
 
 class CategoryCollection extends ResourceCollection
 {
@@ -17,7 +18,7 @@ class CategoryCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'categories' => $this->collection,
+            'categories' => $this->mapCollection(),
             'meta'       => [
                 'total'        => $this->total(),
                 'count'        => $this->count(),
@@ -26,5 +27,21 @@ class CategoryCollection extends ResourceCollection
                 'total_pages'  => $this->lastPage()
             ],
         ];
+    }
+
+    public function transform($value, callable $callback, $default = null)
+    {
+        Log::info("tranfo");
+    }
+
+    public function mapCollection()
+    {
+        $categories = $this->collection;
+        $data = [];
+        foreach ($categories as $item) {
+            $item['category'] = pare_url_file($item['avatar']);
+            $data[] = $item;
+        }
+        return $data;
     }
 }

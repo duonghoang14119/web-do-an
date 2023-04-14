@@ -19,7 +19,8 @@ class CreateOrdersTable extends Migration
             $table->integer('total_money')->default(0);
             $table->integer('discount')->default(0);
             $table->string('note')->nullable();
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(0)->comment('Trạng thái thanh toán');
+            $table->tinyInteger('shipping_status')->default(1)->comment('trạng thái vận chuyển');
             $table->timestamps();
         });
     }

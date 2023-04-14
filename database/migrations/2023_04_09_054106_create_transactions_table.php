@@ -17,7 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->integer('order_id')->default(0);
             $table->integer('product_id')->default(0);
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(0)->comment('trạng thái đơn hàng');
             $table->integer('user_id')->default(0);
             $table->integer('discount')->default(0);
             $table->integer('price')->default(0);

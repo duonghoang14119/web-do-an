@@ -33,4 +33,10 @@ Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function () {
         Route::get('','ApiProductController@index');
         Route::get('show/{id}','ApiProductController@show');
     });
+
+    Route::group(['prefix' => 'order'], function (){
+        Route::get('','ApiOrderController@index');
+        Route::get('show/{id}','ApiOrderController@show');
+        Route::post('add','ApiOrderController@add');
+    });
 });

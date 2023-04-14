@@ -17,9 +17,12 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->integer('order_id')->default(0);
             $table->integer('product_id')->default(0);
-            $table->integer('price')->default(0);
             $table->tinyInteger('status')->default(0);
             $table->integer('user_id')->default(0);
+            $table->integer('discount')->default(0);
+            $table->integer('price')->default(0);
+            $table->integer('quantity')->default(1);
+            $table->integer('total_price')->default(0);
             $table->timestamps();
         });
     }

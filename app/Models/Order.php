@@ -21,23 +21,28 @@ class Order extends Model
     public $statusConfig = [
         self::STATUS_DEFAULT => [
             'name' => 'Khởi tạo',
-            'status' => self::STATUS_DEFAULT
+            'status' => self::STATUS_DEFAULT,
+            'class' => 'default'
         ],
         self::STATUS_CONFIRM => [
             'name' => 'Đã xác nhận',
-            'status' => self::STATUS_CONFIRM
+            'status' => self::STATUS_CONFIRM,
+            'class' => 'default'
         ],
         self::STATUS_WAIT_FOR_PAY => [
             'name' => 'Chờ thanh toán',
-            'status' => self::STATUS_WAIT_FOR_PAY
+            'status' => self::STATUS_WAIT_FOR_PAY,
+            'class' => 'warning'
         ],
         self::STATUS_PAID => [
             'name' => 'Đã thanh toán',
-            'status' => self::STATUS_PAID
+            'status' => self::STATUS_PAID,
+            'class' => 'success'
         ],
         self::STATUS_CANCEL => [
             'name' => 'Huỷ đơn',
-            'status' => self::STATUS_CANCEL
+            'status' => self::STATUS_CANCEL,
+            'class' => 'danger'
         ],
     ];
 
@@ -51,42 +56,53 @@ class Order extends Model
     public $statusShippingConfig = [
         self::STATUS_SHIPPING_DEFAULT => [
             'name' => 'Khởi tạo',
-            'status' => self::STATUS_SHIPPING_DEFAULT
+            'status' => self::STATUS_SHIPPING_DEFAULT,
+            'class' => 'default'
         ],
         self::STATUS_SHIPPING_WAITING => [
             'name' => 'Chờ lấy hàng',
-            'status' => self::STATUS_SHIPPING_WAITING
+            'status' => self::STATUS_SHIPPING_WAITING,
+            'class' => 'warning'
         ],
         self::STATUS_SHIPPING_WAREHOUSE => [
             'name' => 'Đơn hàng ở kho',
-            'status' => self::STATUS_SHIPPING_WAREHOUSE
+            'status' => self::STATUS_SHIPPING_WAREHOUSE,
+            'class' => 'warning'
         ],
         self::STATUS_SHIPPING_DELIVERING => [
             'name' => 'Đang giao hàng',
-            'status' => self::STATUS_SHIPPING_DELIVERING
+            'status' => self::STATUS_SHIPPING_DELIVERING,
+            'class' => 'success'
         ],
         self::STATUS_SHIPPING_SUCCESS => [
             'name' => 'Hoàn thành',
-            'status' => self::STATUS_SHIPPING_SUCCESS
+            'status' => self::STATUS_SHIPPING_SUCCESS,
+            'class' => 'success'
         ],
         self::STATUS_SHIPPING_CANCEL => [
             'name' => 'Huỷ đơn',
-            'status' => self::STATUS_SHIPPING_CANCEL
+            'status' => self::STATUS_SHIPPING_CANCEL,
+            'class' => 'danger'
         ],
     ];
 
     public function getStatus()
     {
-        return Arr::get($this->status, $this->statusConfig, []);
+        return Arr::get($this->statusConfig, $this->status, []);
     }
 
     public function getStatusShippingConfig()
     {
-        return Arr::get($this->shipping_status, $this->statusShippingConfig, []);
+        return Arr::get($this->statusShippingConfig, $this->shipping_status , []);
     }
 
     public function transactions()
     {
         return $this->hasMany(Transaction::class,'order_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

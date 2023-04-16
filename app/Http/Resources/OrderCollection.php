@@ -4,21 +4,23 @@ namespace App\Http\Resources;
 
 use App\Models\Order;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\Log;
 
 class OrderCollection extends ResourceCollection
 {
     public $collects = Order::class;
+
     /**
      * Transform the resource collection into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
     {
         return [
-            'orders'       => $this->mapCollection(),
-            'meta' => [
+            'orders' => $this->mapCollection(),
+            'meta'   => [
                 'total'        => $this->total(),
                 'count'        => $this->count(),
                 'per_page'     => $this->perPage(),
@@ -31,10 +33,13 @@ class OrderCollection extends ResourceCollection
 
     public function mapCollection()
     {
-        $products = $this->collection;
-        $data = [];
-        foreach ($products as $item) {
-            $data[] = $item;
+        $transactions = $this->collection;
+        $data         = [];
+        foreach ($transactions as $transaction) {
+            $item                          = $transaction;
+            $item['status_order']          = $transaction->getStatus($transaction->status);
+            $item['shipping_status_order'] = $transaction->getStatusShippingConfig($transaction->shipping_status);
+            $data[]                        = $item;
         }
         return $data;
     }

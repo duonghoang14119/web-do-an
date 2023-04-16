@@ -25,6 +25,12 @@ Route::group(['prefix' => 'admin'], function (){
         Route::get('update/{id}','AdminProductController@edit')->name('get_admin.product.update');
         Route::post('update/{id}','AdminProductController@update');
     });
+    Route::group(['prefix' => 'order'], function (){
+        Route::get('','AdminOrderController@index')->name('get_admin.order.index');
+
+        Route::get('update/{id}','AdminOrderController@edit')->name('get_admin.order.update');
+        Route::post('update/{id}','AdminOrderController@update');
+    });
     Route::group(['prefix' => 'user'], function (){
         Route::get('','AdminUserController@index')->name('get_admin.user.index');
         Route::get('create','AdminUserController @create')->name('get_admin.user.create');

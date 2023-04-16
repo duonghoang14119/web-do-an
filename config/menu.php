@@ -16,6 +16,10 @@ return [
         'name' => 'Sản phẩm'
     ],
     [
+        'route' => 'get_admin.order.index',
+        'name' => 'Đơn hàng'
+    ],
+    [
         'route' => 'get_admin.user.index',
         'name' => 'Thành viên'
     ],

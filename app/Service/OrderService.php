@@ -76,13 +76,17 @@ class OrderService
 
     public static function createOrder(Request $request, $totalMoney)
     {
-        $order              = new Order();
-        $order->user_id     = 0;
-        $order->total_money = $totalMoney;
-        $order->discount    = $request->discount;
-        $order->note        = $request->note;
-        $order->status      = 1;
-        $order->created_at  = Carbon::now();
+        $order                   = new Order();
+        $order->user_id          = 0;
+        $order->total_money      = $totalMoney;
+        $order->discount         = $request->discount;
+        $order->receiver_name    = $request->name;
+        $order->receiver_email   = $request->email;
+        $order->receiver_phone   = $request->phone;
+        $order->receiver_address = $request->address;
+        $order->note             = $request->note;
+        $order->status           = 1;
+        $order->created_at       = Carbon::now();
         $order->save();
 
         return $order;

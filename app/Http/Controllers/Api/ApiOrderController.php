@@ -20,7 +20,7 @@ class ApiOrderController extends Controller
             ], 200);
 
         } catch (\Exception $exception) {
-            Log::error("ApiOrderController@add => File:  " .
+            Log::error("ApiOrderController@index => File:  " .
                 $exception->getFile() . " Line: " .
                 $exception->getLine() . " Message: " .
                 $exception->getMessage());

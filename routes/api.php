@@ -38,5 +38,6 @@ Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function () {
         Route::get('','ApiOrderController@index');
         Route::get('show/{id}','ApiOrderController@show');
         Route::post('add','ApiOrderController@add');
+        Route::put('update-cancel-paid','ApiOrderController@cancelStatusPaid');
     });
 });

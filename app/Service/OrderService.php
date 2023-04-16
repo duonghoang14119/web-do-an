@@ -9,6 +9,7 @@
 namespace App\Service;
 
 use App\Http\Resources\OrderCollection;
+use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Transaction;
@@ -104,5 +105,27 @@ class OrderService
         $transaction->created_at = Carbon::now();
         $transaction->save();
         return $transaction;
+    }
+
+    public static function findById(Request $request, $id)
+    {
+        return Order::find($id);
+    }
+
+    public static function updateStatus($order, $status)
+    {
+        $order->status = $status;
+        $order->updated_at = Carbon::now();
+        $order->save();
+        return $order;
+    }
+    public static function show(Request $request, $id)
+    {
+        $order = Order::with('transactions:id,price,quantity')->find($id);
+        $order = new OrderResource($order);
+        return [
+            'status' => 'success',
+            'data'   => $order
+        ];
     }
 }

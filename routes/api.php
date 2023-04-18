@@ -34,6 +34,13 @@ Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function () {
         Route::get('show/{id}','ApiProductController@show');
     });
 
+    Route::group(['prefix' => 'user'], function (){
+        Route::put('update','ApiUserController@update')->middleware('auth:api');
+    });
+    Route::group(['prefix' => 'upload'], function (){
+        Route::post('image','ApiUploadController@uploadImage')->middleware('auth:api');
+    });
+
     Route::group(['prefix' => 'order'], function (){
         Route::get('','ApiOrderController@index');
         Route::get('show/{id}','ApiOrderController@show');

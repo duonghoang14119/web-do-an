@@ -78,7 +78,10 @@ if (!function_exists('upload_image')) {
             $extend = ['png', 'jpg', 'jpeg', 'webp', 'gif'];
 
         if (!in_array($ext, $extend))
-            return $data['code'] = 0;
+        {
+            $data['code'] = 0;
+            return $data;
+        }
 
         // Tên file mới
         $nameFile = trim(str_replace('.' . $ext, '', strtolower($info->getFilename())));

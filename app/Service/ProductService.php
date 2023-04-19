@@ -12,11 +12,13 @@ use App\Http\Resources\ProductCollection;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ProductService
 {
     public static function index(Request $request)
     {
+        Log::info("----------- params: ". json_encode($request->all()));
         $products = Product::with('category:id,name,slug');
 
         if ($request->category_id)

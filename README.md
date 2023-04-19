@@ -25,3 +25,6 @@
 `
     php artisan passport:keys --length=256 --force
 `
+
+##GIT
+`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`

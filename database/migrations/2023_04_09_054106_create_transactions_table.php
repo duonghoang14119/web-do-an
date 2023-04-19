@@ -21,6 +21,8 @@ class CreateTransactionsTable extends Migration
             $table->integer('user_id')->default(0);
             $table->integer('discount')->default(0);
             $table->integer('price')->default(0);
+            $table->string('name')->nullable();
+            $table->string('avatar')->nullable();
             $table->integer('quantity')->default(1);
             $table->integer('total_price')->default(0);
             $table->timestamps();

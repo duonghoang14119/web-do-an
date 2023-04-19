@@ -22,7 +22,7 @@ class OrderService
 {
     public static function index(Request $request)
     {
-        $orders = Order::with('transactions:id,price,quantity');
+        $orders = Order::with('transactions:id,price,quantity,order_id,name,avatar');
 
         $orders = $orders->paginate(20);
         return new OrderCollection($orders);
@@ -78,7 +78,7 @@ class OrderService
     public static function createOrder(Request $request, $totalMoney)
     {
         $order                   = new Order();
-        $order->user_id          = 0;
+        $order->user_id          = $request->user_id ?? 0;
         $order->total_money      = $totalMoney;
         $order->discount         = $request->discount;
         $order->receiver_name    = $request->name;

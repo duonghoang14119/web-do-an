@@ -18,6 +18,7 @@ class ApiOrderController extends Controller
             $order = OrderService::index($request);
 
             return response()->json([
+                'status' => 'success',
                 'data' => $order
             ], 200);
 

@@ -17,7 +17,7 @@ class OrderResource extends JsonResource
      */
     public function toArray($request)
     {
-        $order = [
+        $order                          = [
             'id'               => $this->id,
             'user_id'          => $this->user_id,
             'total_money'      => $this->total_money,
@@ -26,6 +26,7 @@ class OrderResource extends JsonResource
             'receiver_email'   => $this->receiver_email,
             'receiver_phone'   => $this->receiver_phone,
             'receiver_address' => $this->receiver_address,
+            'status'           => $this->status,
             'shipping_status'  => $this->shipping_status,
             'transactions'     => $this->transactions,
             'created_at'       => $this->created_at,
@@ -34,6 +35,6 @@ class OrderResource extends JsonResource
         $order['status_order']          = $this->getStatus($this->status);
         $order['shipping_status_order'] = $this->getStatusShippingConfig($this->shipping_status);
 
-        return  $order;
+        return $order;
     }
 }

@@ -13,20 +13,22 @@ class ApiUserController extends Controller
 {
     public function update(Request $request)
     {
-        try{
-            $user     = Auth::user();
+        try {
+            $user = Auth::user();
             $user = UserService::update($request, $user->id);
             return response()->json([
-                'data' => $user
+                'status' => 'success',
+                'data'   => $user
             ], 200);
 
-        }catch (\Exception $exception) {
-            Log::error("ApiUserController@update => File:  ".
-                $exception->getFile(). " Line: ".
-                $exception->getLine() ." Message: ".
+        } catch (\Exception $exception) {
+            Log::error("ApiUserController@update => File:  " .
+                $exception->getFile() . " Line: " .
+                $exception->getLine() . " Message: " .
                 $exception->getMessage());
             return response()->json([
-                'data' => []
+                'status' => 'fail',
+                'data'   => []
             ], 501);
         }
     }

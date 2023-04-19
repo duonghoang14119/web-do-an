@@ -23,6 +23,7 @@ class OrderService
     public static function index(Request $request)
     {
         $orders = Order::with('transactions:id,price,quantity,order_id,name,avatar');
+        if ($request->user_id) $orders->where('user_id', $request->user_id);
 
         $orders = $orders->paginate(20);
         return new OrderCollection($orders);

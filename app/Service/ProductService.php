@@ -24,6 +24,9 @@ class ProductService
         if ($request->category_id)
             $products->where('category_id', $request->category_id);
 
+        if ($request->keyword)
+            $products->where('name','like','%'.$request->keyword.'%');
+
         $products = $products->paginate(20);
         return new ProductCollection($products);
     }

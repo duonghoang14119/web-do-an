@@ -102,6 +102,8 @@ class OrderService
         $transaction->price      = $product['price'] ?? 0;
         $transaction->quantity   = $product['quantity'] ?? 1;
         $transaction->discount   = $product['discount'] ?? 0;
+        $transaction->name       = $product['name'] ?? "";
+        $transaction->avatar     = $product['avatar'] ?? "";
         $transaction->status     = $order->status;
         $transaction->created_at = Carbon::now();
         $transaction->save();
@@ -115,11 +117,12 @@ class OrderService
 
     public static function updateStatus($order, $status)
     {
-        $order->status = $status;
+        $order->status     = $status;
         $order->updated_at = Carbon::now();
         $order->save();
         return $order;
     }
+
     public static function show(Request $request, $id)
     {
         $order = Order::with('transactions:id,price,quantity')->find($id);

@@ -25,7 +25,9 @@ class OrderService
         $orders = Order::with('transactions:id,price,quantity,order_id,name,avatar');
         if ($request->user_id) $orders->where('user_id', $request->user_id);
 
-        $orders = $orders->paginate(20);
+        $orders = $orders
+            ->orderBy('id','DESC')
+            ->paginate(20);
         return new OrderCollection($orders);
     }
 
@@ -125,7 +127,7 @@ class OrderService
 
     public static function show(Request $request, $id)
     {
-        $order = Order::with('transactions:id,price,quantity')->find($id);
+        $order = Order::with('transactions:id,price,quantity,order_id,name,avatar')->find($id);
         $order = new OrderResource($order);
         return [
             'status' => 'success',

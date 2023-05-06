@@ -9,6 +9,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'admin'], function (){
+    Route::get('','AdminController@index')->name('get_admin.index');
     Route::group(['prefix' => 'category'], function (){
         Route::get('','AdminCategoryController@index')->name('get_admin.category.index');
         Route::get('create','AdminCategoryController@create')->name('get_admin.category.create');

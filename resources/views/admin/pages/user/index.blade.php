@@ -22,7 +22,7 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>
-
+                                                <a href="{{ route('get_admin.user.delete', $item->id) }}">Xoá</a>
                                             </td>
                                         </tr>
                                     @endforeach

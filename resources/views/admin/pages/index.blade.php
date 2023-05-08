@@ -21,6 +21,21 @@
                 <h6>Đơn hàng <b>{{ $countOrder ?? 0 }}</b></h6>
             </div>
         </div>
+        <div class="col-sm-4 col-md-4">
+            <div class="box p-3 mb-2 bg-info text-white">
+                <h6>Doanh thu ngày <b>{{ number_format(($totalMoneyDay ?? 0),0,',','.') }} vnđ</b></h6>
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-4">
+            <div class="box p-3 mb-2 bg-primary text-white">
+                <h6>Doanh thu tháng <b>{{ number_format(($totalMoneyMonth ?? 0),0,',','.') }} vnđ</b></h6>
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-4">
+            <div class="box p-3 mb-2 bg-primary text-white">
+                <h6>Doanh thu năm <b>{{ number_format(($totalMoneyYear ?? 0),0,',','.') }} vnđ</b></h6>
+            </div>
+        </div>
     </div>
     <div class="row mt-5">
         <div class="col-md-6">

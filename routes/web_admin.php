@@ -34,10 +34,11 @@ Route::group(['prefix' => 'admin'], function (){
     });
     Route::group(['prefix' => 'user'], function (){
         Route::get('','AdminUserController@index')->name('get_admin.user.index');
-        Route::get('create','AdminUserController @create')->name('get_admin.user.create');
-        Route::post('create','AdminUserController @store');
+        Route::get('create','AdminUserController@create')->name('get_admin.user.create');
+        Route::post('create','AdminUserController@store');
 
-        Route::get('update/{id}','AdminUserController @edit')->name('get_admin.user.update');
-        Route::post('update/{id}','AdminUserController @update');
+        Route::get('update/{id}','AdminUserController@edit')->name('get_admin.user.update');
+        Route::post('update/{id}','AdminUserController@update');
+        Route::get('delete/{id}','AdminUserController@delete')->name('get_admin.user.delete');
     });
 });
